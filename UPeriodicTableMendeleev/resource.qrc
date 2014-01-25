@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="PeriodicTable">resource/periodic_table_mendeleev.xml</file>
+    </qresource>
+</RCC>
