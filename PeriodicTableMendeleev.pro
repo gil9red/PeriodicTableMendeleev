@@ -8,10 +8,14 @@ TEMPLATE = app
 DESTDIR = ../bin
 
 SOURCES += main.cpp \
-    UPeriodicTableParser.cpp
+    PeriodicTableParser.cpp
 
 HEADERS  += \
-    UPeriodicTableParser.h
+    PeriodicTableParser.h \
+    utils.h
 
 RESOURCES += \
     resource.qrc
+
+OTHER_FILES += \
+    resource/periodic_table_mendeleev.xml

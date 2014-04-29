@@ -2,17 +2,18 @@
 #include <QTextCodec>
 #include <QDateTime>
 
-#include "UPeriodicTableParser.h"
+#include "PeriodicTableParser.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsTextItem>
-
 #include <QTimeLine>
 #include <QGraphicsItemAnimation>
 #include <QGraphicsBlurEffect>
-
+#include <QHeaderView>
 #include <QTabWidget>
+
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -23,9 +24,6 @@ int main(int argc, char *argv[])
     app.setApplicationVersion("0.0.1");
 
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf8"));
-
-    QString path = qApp->applicationDirPath()
-            + "\\" + "periodic_table_mendeleev.xml";
 
     QTableWidget *tWidget = new QTableWidget();
     QTableWidget *tWidget1 = new QTableWidget();
@@ -39,16 +37,22 @@ int main(int argc, char *argv[])
     QGraphicsScene *scene = new QGraphicsScene();
     QGraphicsScene *scene1 = new QGraphicsScene();
 
+    QTreeWidget * treeWidget = new QTreeWidget();
+    treeWidget->setWindowTitle("QTreeWidget - Периодическая система химических элементов");
+    treeWidget->show();
+
     bool ok;
 
-    UPeriodicTableParser parser;
-    parser.fromXml(path, &ok);
+    PeriodicTableParser parser;
+    parser.fromXml(":/PeriodicTable", &ok);
 
     parser.toTableWidget(tWidget, false);
     parser.toTableWidget(tWidget1, true);
 
     parser.toGraphicsScene(scene, false);
     parser.toGraphicsScene(scene1, true);
+
+    parser.toTreeWidget(treeWidget);
 
     QGraphicsView *view = new QGraphicsView();
     view->setRenderHint(QPainter::Antialiasing);
